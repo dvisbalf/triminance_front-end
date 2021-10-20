@@ -1,6 +1,6 @@
 import React from "react";
 import './Registro.css';
-import logot from "../../img/logotriminance.png";
+import logot from "../img/logotriminance.png";
 
 const Registro = () => {
 
@@ -8,8 +8,8 @@ const Registro = () => {
         <div>
             <div>
                 <div className='header'>
-                    <img src={logot} height="90px"/>
-                    <h1>El dinero de <b>tus sueños,</b> <br /> al <b>precio justo.</b></h1>
+                    <img src={logot} height="90px" />
+                    <h1>El dinero <br /> de <b>tus sueños,</b> <br /> al <b>precio justo.</b></h1>
                 </div>
                 <div>
                     <p>Registro de usuario</p>
