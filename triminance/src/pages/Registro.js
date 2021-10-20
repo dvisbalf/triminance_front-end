@@ -27,6 +27,8 @@ const Registro = () => {
                         <input type ='checkbox' required>Certifico que estoy de acuerdo con los</input>
             </div>
         </div>
+
+        /* Comentario!!! */
     )
 }
 
