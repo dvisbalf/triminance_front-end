@@ -4,7 +4,7 @@ import logot from "../img/logotriminance.png";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {} from '@fortawesome/free-solid-svg-icons';
 import {faFacebook, faTwitter, faInstagram, faLinkedin} from '@fortawesome/free-brands-svg-icons';
-
+ 
 const Login = () => {
     return (
 
