@@ -1,6 +1,6 @@
 import React from "react";
-import './login.css';
-import logot from "../img/logotriminance.png";
+import './Login.css';
+import logot from "../../img/logotriminance.png";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {} from '@fortawesome/free-solid-svg-icons';
 import {faFacebook, faTwitter, faInstagram, faLinkedin} from '@fortawesome/free-brands-svg-icons';
