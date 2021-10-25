@@ -4,6 +4,7 @@ import logot from "../img/logotriminance.png";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {} from '@fortawesome/free-solid-svg-icons';
 import {faFacebook, faTwitter, faInstagram, faLinkedin} from '@fortawesome/free-brands-svg-icons';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const Login = () => {
     return (
@@ -19,7 +20,7 @@ const Login = () => {
                     <input type="text" placeholder="username" required/>
                     <input type="password" placeholder="password" required/>
                     <button>Acceder</button>
-                    <p className="message"><a href="#">He olvidado mi contraseña</a></p>
+                    <p className="message"><a href='#'>He olvidado mi contraseña</a></p>
                     </form>
                 </div>
                 

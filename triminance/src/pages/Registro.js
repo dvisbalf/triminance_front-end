@@ -1,5 +1,5 @@
 import React from "react";
-import './Registro.css';
+import './registro.css';
 import logot from "../img/logotriminance.png";
 
 const Registro = () => {
@@ -22,14 +22,12 @@ const Registro = () => {
                         <input type ='' placeholder='País' required />
                         <input type ='' placeholder='Estado' required />
                         <input type ='' placeholder='Ciudad' required />
-
                     </form>
-                        <input type ='checkbox' required>Certifico que estoy de acuerdo con los</input>
+
+                    <input type ='checkbox' required>Certifico que estoy de acuerdo con los</input>
             </div>
         </div>
-
-        /* Comentario!!! */
     )
-}
+};
 
 export default Registro;
