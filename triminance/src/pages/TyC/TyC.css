@@ -1,0 +1,7 @@
+.TyC{
+    background-color: blue;
+    display: none;
+}
+.TyC-Abierto{
+    display: flex;
+}
