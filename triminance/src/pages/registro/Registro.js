@@ -1,10 +1,11 @@
-import React  from "react";
+import React,{useState}  from "react";
 import './Registro.css';
 import logo from "../../img/logotriminance.png";
-
+import TyC from "../TyC/TyC";
 
 
 const Registro = () => {  
+  const [estadoModal, cambiarEstadoModal] = useState(false);
 
 
   return (
@@ -14,8 +15,8 @@ const Registro = () => {
       
       
           <div class='arriba'>
-            <img src={logo} height="70px" />
-            <h1>El dinero de <b>tus sueños,</b>  al <b>precio justo.</b></h1>
+            <img src={logo} height="60px" />
+            <p class='h1'>El dinero de <b>tus sueños,</b>  al <b>precio justo.</b></p>
           </div>
 
           <h2>Registro de Usuario</h2>
@@ -34,16 +35,23 @@ const Registro = () => {
               <input type="password" placeholder="Ciudad" required/>
               
       
-              <p>Acepto los <p>Terminos y Condiciones</p><input type="checkbox" id='boton'/></p> 
+              <p onClick={() => cambiarEstadoModal(!estadoModal)}>Acepto los  Terminos y Condiciones</p> 
+              <input type="checkbox" class='boton1'/>
+
+              <TyC 
+                estado={estadoModal}
+                cambiarEstado={cambiarEstadoModal}>
+              </TyC>
 
           
 
               <button class='boton'>Registrarse</button>
 
-              <button class='boton'>Cancelar</button>
 
-            
             </form>
+
+            <button class='boton'>Cancelar</button>
+
           </div> 
       
    </container>      
