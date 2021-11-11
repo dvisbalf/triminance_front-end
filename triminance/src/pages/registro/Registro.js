@@ -14,9 +14,9 @@ const Registro = () => {
 
       
       
-          <div class='arriba'>
+          <div className='arriba'>
             <img src={logo} height="60px" />
-            <p class='h1'>El dinero de <b>tus sueños,</b>  al <b>precio justo.</b></p>
+            <p className='h1'>El dinero de <b>tus sueños,</b>  al <b>precio justo.</b></p>
           </div>
 
           <h2>Registro de Usuario</h2>
@@ -45,12 +45,12 @@ const Registro = () => {
 
           
 
-              <button class='boton'>Registrarse</button>
+              <button className='boton'>Registrarse</button>
 
 
             </form>
 
-            <button class='boton'>Cancelar</button>
+            <button className='boton'>Cancelar</button>
 
           </div> 
       

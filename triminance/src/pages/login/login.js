@@ -19,14 +19,14 @@ const Login =() => {
     const actualizado=(event)=>{
 
         setDatos({
-            ...datos,
-            [event.target.name]:event.target.value
+            ...datos, 
+            [event.target.name]: event.target.value
         });
     };
 
     const enviarDatos = (event) => {
         event.preventDefault();
-        console.log(datos.nombre+''+datos.password)
+        console.log(datos.user + ' ' + datos.password)
     };
 
     return (
