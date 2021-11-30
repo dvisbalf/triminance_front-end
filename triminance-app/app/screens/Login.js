@@ -67,7 +67,10 @@ const Login = ({ navigation }) => {
               required
             />
           </View>
-          <TouchableHighlight style={styles.inputext2}>
+          <TouchableHighlight 
+            style={styles.inputext2}
+            onPress={() => navigation.navigate("Inicio")}
+          >
             <Text style={styles.inputinside}>ACCEDER</Text>
           </TouchableHighlight>
 

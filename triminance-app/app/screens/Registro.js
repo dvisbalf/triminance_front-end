@@ -163,20 +163,22 @@ const stylesR = StyleSheet.create({
 
   text2: {
     color: "white",
-    paddingLeft: "20%",
+    paddingLeft: "16%",
     fontSize: 30,
   },
 
   text3: {
     color: "white",
-    paddingLeft: "28%",
+    paddingLeft: "27%",
     fontSize: 30,
   },
 
   logo: {
     height: 70,
     width: 70,
-    marginLeft: "40%",
+    marginTop:'10%',
+    marginLeft: "43%",
+    marginBottom:'3%',
   },
 
   centrado: {
@@ -191,7 +193,8 @@ const stylesR = StyleSheet.create({
     marginLeft: "7%",
     marginRight: "7%",
     marginTop: "6%",
-    padding: 0,
+    paddingTop: 4,
+    paddingBottom:2
   },
 
   terminos: {
@@ -207,6 +210,7 @@ const stylesR = StyleSheet.create({
   pais: {
     height: 28,
     color: "black",
+    margin:0,
   },
   comboborde: {
     borderRadius: 60,
@@ -216,5 +220,7 @@ const stylesR = StyleSheet.create({
     marginTop: "6%",
     borderColor: "black",
     borderWidth: 1,
+    paddingBottom:8,
+    paddingTop:0,    
   },
 });
