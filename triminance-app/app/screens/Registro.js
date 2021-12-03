@@ -6,14 +6,31 @@ import {
   StyleSheet,
   View,
   SafeAreaView,
+  Pressable
 } from "react-native";
 import LOGO from "../../assets/img/LOGO.svg";
 import { LinearGradient } from "expo-linear-gradient";
 import { Picker } from "@react-native-picker/picker";
-import { CheckBox } from "react-native-elements";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+function MyCheckbox() {
+  const [checked, onChange] = useState(false);
+
+  function onCheckmarkPress() {
+    onChange(!checked);
+  }
+
+  return (
+    <Pressable
+      style={[stylesR.checkboxBase, checked && stylesR.checkboxChecked]}
+      onPress={onCheckmarkPress}>
+      {checked && <MaterialCommunityIcons name="check-bold" size={10} color="#EA0451" />}
+    </Pressable>
+  );
+}
 
 const Registro = () => {
-  const [selectedValue, setSelectedValue] = useState("pais");
+  const [selectedLanguage, setSelectedLanguage] = useState();
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -42,7 +59,7 @@ const Registro = () => {
             style={stylesR.border}
             name="Cemail"
             type="email"
-            placeholder="Confirmar email"
+            placeholder="Confirma email"
             required
           />
 
@@ -50,7 +67,7 @@ const Registro = () => {
             style={stylesR.border}
             name="telefono"
             type="number"
-            placeholder="Telefono movil"
+            placeholder="Teléfono movil"
             required
           />
 
@@ -58,66 +75,67 @@ const Registro = () => {
             style={stylesR.border}
             name="user"
             type="text"
-            placeholder="Usuario"
+            placeholder="Nombre Usuario"
             required
           />
 
-          <View style={stylesR.comboborde}>
-            <Picker
-              selectedValue={selectedValue}
-              style={stylesR.pais}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedValue(itemValue)
-              }
-              required
-            >
-              <Picker.Item label="Pais" value="" />
-              <Picker.Item label="java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
-            </Picker>
+          <View style={stylesR.border}>
+          <Picker     
+            style={stylesR.pais}
+            mode="dropdown"
+            dropdownIconColor="#D5D5D5"
+            dropdownIconRippleColor="#D5D5D5"
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+          setSelectedLanguage(itemValue)
+          }>
+            <Picker.Item label="Pais" value="pais" />
+            <Picker.Item label="Colombia" value="colombia" />
+          </Picker>
           </View>
 
-          <View style={stylesR.comboborde}>
-            <Picker
-              style={stylesR.pais}
-              selectedValue={selectedValue}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedValue(itemValue)
-              }
-              required
-            >
-              <Picker.Item label="Estado" value="" />
-              <Picker.Item label="java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
-            </Picker>
+          <View style={stylesR.border}>
+          <Picker     
+            style={stylesR.pais}
+            mode="dropdown"
+            dropdownIconColor="#D5D5D5"
+            dropdownIconRippleColor="#D5D5D5"
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+          setSelectedLanguage(itemValue)
+          }>
+            <Picker.Item label="Estado" value="estado" />
+            <Picker.Item label="No se que va aqui xd" value="state" />
+          </Picker>
           </View>
 
-          <View style={stylesR.comboborde}>
-            <Picker
-              selectedValue={selectedValue}
-              style={stylesR.pais}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedValue(itemValue)
-              }
-              required
-            >
-              <Picker.Item label="Ciudad" value="" />
-              <Picker.Item label="java" value="java" />
-              <Picker.Item label="JavaScript" value="js" />
-            </Picker>
+          <View style={stylesR.border}>
+          <Picker     
+            style={stylesR.pais}
+            mode="dropdown"
+            dropdownIconColor="#D5D5D5"
+            dropdownIconRippleColor="#D5D5D5"
+            selectedValue={selectedLanguage}
+            onValueChange={(itemValue, itemIndex) =>
+          setSelectedLanguage(itemValue)
+          }>
+            <Picker.Item label="Ciudad" value="ciudad" />
+            <Picker.Item label="Barranquilla" value="barranquilla" />
+          </Picker>
           </View>
-
-          <CheckBox
-          center 
-          title="Certifico que estoy de acuerdo con los"
           
+          <View style={stylesR.terminos1}>
+          <MyCheckbox 
           />
-
+          <Text>Certifico que estoy de acuerdo con los</Text>
+          </View>   
+          <View style={stylesR.terminos2}>         
           <Text>términos y condiciones</Text>
-
+          </View> 
           <TouchableHighlight>
             <Text>Registrarse</Text>
           </TouchableHighlight>
+            
         </View>
 
         <TouchableHighlight>
@@ -156,21 +174,22 @@ const stylesR = StyleSheet.create({
 
   text: {
     color: "#002D75",
-    fontSize: 30,
-    textAlign: "center",
-    marginTop: "5%",
+    fontSize: 20,
+    fontWeight: "bold",
+    paddingLeft: 115,
+    marginTop: "5%"
   },
 
   text2: {
     color: "white",
-    paddingLeft: "16%",
-    fontSize: 30,
+    paddingLeft: 76,
+    fontSize: 25,
   },
 
   text3: {
     color: "white",
-    paddingLeft: "27%",
-    fontSize: 30,
+    paddingLeft: 121,
+    fontSize: 25,
   },
 
   logo: {
@@ -187,19 +206,45 @@ const stylesR = StyleSheet.create({
   },
 
   border: {
+    borderColor: '#D5D5D5',    
     borderWidth: 1,
     borderRadius: 60,
-    paddingLeft: 10,
-    marginLeft: "7%",
-    marginRight: "7%",
+    paddingLeft: 35,
+    marginLeft: 39,
+    marginRight: 38,
     marginTop: "6%",
     paddingTop: 4,
     paddingBottom:2
   },
 
-  terminos: {
+  checkboxBase: {
+    width: 14,
+    height: 14,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 1,
+    borderWidth: 2,
+    borderColor: '#EA0451',
+    
+  },
+
+  checkboxChecked: {
+    backgroundColor: 'white'
+  },
+
+  checkbox: {
+    marginLeft: 40
+  },
+
+  terminos1: {
     flexDirection: "row",
-    marginLeft: "13%",
+    marginLeft: 75,
+    marginTop: 20
+  },
+
+  terminos2: {
+    marginLeft: 124,
+    
   },
 
   alinear: {
@@ -208,13 +253,17 @@ const stylesR = StyleSheet.create({
   },
 
   pais: {
-    height: 28,
+    height: 45,
     color: "black",
-    margin:0,
+    marginLeft: -8,
+    marginTop: -14,
+    marginBottom: -2
+    
+
   },
   comboborde: {
     borderRadius: 60,
-    paddingLeft: 10,
+    paddingLeft: 12,
     marginLeft: "7%",
     marginRight: "7%",
     marginTop: "6%",

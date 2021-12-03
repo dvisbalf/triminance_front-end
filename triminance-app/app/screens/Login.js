@@ -27,17 +27,17 @@ const Login = ({ navigation }) => {
           <Text style={styles.text}>El dinero</Text>
 
           <Text style={styles.text1}>
-            de <Text style={{ fontWeight: "bold" }}>tus sueños,</Text>
+            de <Text style={{ fontFamily: "RubikBold" }}>tus sueños,</Text>
           </Text>
 
           <Text style={styles.text1}>
-            al <Text style={{ fontWeight: "bold" }}>precio justo.</Text>
+            al <Text style={{ fontFamily: "RubikBold" }}>precio justo.</Text>
           </Text>
         </LinearGradient>
 
         <Text style={styles.text2}>
           Bienvenidos a{" "}
-          <Text style={{ color: "#EA0451", fontWeight: "bold" }}>
+          <Text style={{ color: "#EA0451", fontFamily: "RubikBold" }}>
             Triminance
           </Text>{" "}
           /{" "}
@@ -67,10 +67,7 @@ const Login = ({ navigation }) => {
               required
             />
           </View>
-          <TouchableHighlight 
-            style={styles.inputext2}
-            onPress={() => navigation.navigate("Inicio")}
-          >
+          <TouchableHighlight style={styles.inputext2}>
             <Text style={styles.inputinside}>ACCEDER</Text>
           </TouchableHighlight>
 
