@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { enableScreens } from "react-native-screens";
 import { useFonts } from 'expo-font';
@@ -12,9 +12,34 @@ import Login from "./app/screens/Login";
 import Registro from "./app/screens/Registro";
 import Inicio from "./app/screens/Inicio";
 
-const Stack = createNativeStackNavigator();
 
-export default function App() {
+export default App = () => {
+
+  const Stack = createNativeStackNavigator();
+
+  const [isLoading, setLoading] = useState (true);
+  const [Data, setData] = useState ([]);
+  
+  
+  const Api = async () => {
+    try {
+      const response = await fetch(
+        'http://45.236.129.73:8888/user/'
+      );
+      const json = await response.json();
+      console.log(json);
+      setData(json.name);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  useEffect (() => {
+    Api();
+  }, []);
+  
   const [loaded] = useFonts({
     GraviolaSoftMedium: require('./assets/fonts/GraviolaSoft-Medium.otf'),
     RubikRegular: require('./assets/fonts/Rubik-Regular.ttf'),
@@ -34,9 +59,9 @@ export default function App() {
           headerShown: false
         }}
       >
-        <Stack.Screen name="Inicio" component={Inicio} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Registro" component={Registro} />
+        <Stack.Screen name="Inicio" component={Inicio} />
       </Stack.Navigator>
     </NavigationContainer>
   );

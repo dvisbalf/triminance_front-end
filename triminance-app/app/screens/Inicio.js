@@ -7,21 +7,7 @@ import Mano from '../../assets/img/ref-icon2.png'
 const Inicio = () => {
     return (
         <SafeAreaView>
-        
-        <LinearGradient colors={["#EA0451", "#FF682F"]}>
-        
-            <View>
-                <Logo/>
-                <Text>Hola,Usuario</Text>
-            </View>    
-            <hr/>
-
-            <View>
-                <Mano/>
-                <Text>CUENTO CON</Text>
-            </View>
-        
-        </LinearGradient>
+        <Text>hola</Text>
 
         </SafeAreaView>
     );

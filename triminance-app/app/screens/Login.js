@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -17,8 +17,52 @@ import Youtube from "../../assets/img/Youtube.svg";
 
 
 
-const Login = ({ navigation }) => {
-  return (
+export default class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+  setEmail(email){
+    this.setState({email})
+  }
+  setPassword(password){
+    this.setState({password})
+  }
+  async checkUser(){
+    try {
+      const data={
+        "User": this.state.email.email,
+        "pwd": this.state.password.password
+      }
+      console.log(JSON.stringify(data))
+      const url= 'http://45.236.129.73:8888/UserLogin/'
+      console.log(this.state.password)
+      const response = await fetch(url,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: JSON.stringify(data),
+      });
+      const json = await response.json();
+      console.log(json,response.status)
+      if(response.status==200){
+        this.props.navigation.navigate("Inicio")
+      }
+      else{
+        alert("Usuario o contraseña incorrectos")
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  render(){
+    return(
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <LinearGradient colors={["#EA0451", "#FF682F"]} style={styles.gradient}>
@@ -27,23 +71,23 @@ const Login = ({ navigation }) => {
           <Text style={styles.text}>El dinero</Text>
 
           <Text style={styles.text1}>
-            de <Text style={{ fontFamily: "RubikBold" }}>tus sueños,</Text>
+            de <Text style={{ fontWeight: "bold" }}>tus sueños,</Text>
           </Text>
 
           <Text style={styles.text1}>
-            al <Text style={{ fontFamily: "RubikBold" }}>precio justo.</Text>
+            al <Text style={{ fontWeight: "bold" }}>precio justo.</Text>
           </Text>
         </LinearGradient>
 
         <Text style={styles.text2}>
           Bienvenidos a{" "}
-          <Text style={{ color: "#EA0451", fontFamily: "RubikBold" }}>
+          <Text style={{ color: "#EA0451", fontWeight: "bold" }}>
             Triminance
           </Text>{" "}
           /{" "}
           <Text
             style={{ color: "#0439EA" }}
-            onPress={() => navigation.navigate("Registro")}
+            onPress={() => this.props.navigation.navigate("Registro")}
           >
             Registrarme
           </Text>
@@ -57,6 +101,7 @@ const Login = ({ navigation }) => {
               type="text"
               placeholder="Login"
               required
+              onChangeText={(email) => this.setEmail({ email })}
             />
 
             <TextInput
@@ -64,10 +109,15 @@ const Login = ({ navigation }) => {
               name="password"
               type="password"
               placeholder="Password"
+              secureTextEntry={true}
               required
+              onChangeText={(password) => this.setPassword({password })}
             />
           </View>
-          <TouchableHighlight style={styles.inputext2}>
+          <TouchableHighlight 
+            style={styles.inputext2}
+            onPress={() => this.checkUser()}
+          >
             <Text style={styles.inputinside}>ACCEDER</Text>
           </TouchableHighlight>
 
@@ -80,12 +130,9 @@ const Login = ({ navigation }) => {
           
         </View>
       </View>
-    </SafeAreaView>
-  );
-};
-
-export default Login;
-
+    </SafeAreaView>);
+  }
+}
 const styles = StyleSheet.create({
   logo: {
     marginTop: 31,
