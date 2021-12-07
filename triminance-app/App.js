@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, } from "react-native";
 import { enableScreens } from "react-native-screens";
 import { useFonts } from 'expo-font';
 
@@ -27,7 +27,6 @@ export default App = () => {
         'http://45.236.129.73:8888/user/'
       );
       const json = await response.json();
-      console.log(json);
       setData(json.name);
     } catch (error) {
       console.error(error);
