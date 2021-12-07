@@ -7,11 +7,13 @@ import {
   View,
   SafeAreaView,
   Pressable,
+  ScrollView
 } from "react-native";
 import LOGO from "../../assets/img/LOGO.svg";
 import { LinearGradient } from "expo-linear-gradient";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import axios from "axios";
 
 function MyCheckbox() {
   const [checked, onChange] = useState(false);
@@ -33,10 +35,41 @@ function MyCheckbox() {
 }
 
 const Registro = ({ navigation }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [country, setCountry] = useState("");
+  const [dept, setDept] = useState("");
+  const [city, setCity] = useState("");
+
+  async function registrar() {
+    const data = {
+        "id": 111111112,
+        "name": name,
+        "lastname": name,
+        "typeUser": "UserType",
+        "phone": phone,
+        "email": email,
+        "password": "s3ku3p4ssw0rd",
+        "userScore": 2.5,
+        "UserStateid": true,
+        "legtermstate": true
+      }
+    const url="http://45.236.129.73:8888/user/"
+    console.log(data)
+    const response = await axios.post(url, data);
+    console.log(response.status);
+    if (response.status === 201) {
+      alert("Usuario registrado correctamente");
+      navigation.navigate("Login");
+    }
+  }
+
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
+    <ScrollView>
       <View style={stylesR.container}>
         <LinearGradient
           colors={["#EA0451", "#FF682F"]}
@@ -61,6 +94,8 @@ const Registro = ({ navigation }) => {
             placeholder="Email"
             placeholderTextColor="#D5D5D5"
             required
+            value={email}
+            onChangeText={(text) => setEmail(text)}
           />
 
           <TextInput
@@ -79,6 +114,8 @@ const Registro = ({ navigation }) => {
             placeholder="Teléfono movil"
             placeholderTextColor="#D5D5D5"
             required
+            value={phone}
+            onChangeText={(text) => setPhone(text)}
           />
 
           <TextInput
@@ -88,6 +125,8 @@ const Registro = ({ navigation }) => {
             placeholder="Nombre Usuario"
             placeholderTextColor="#D5D5D5"
             required
+            value={name}
+            onChangeText={(text) => setName(text)}
           />
 
           <View style={stylesR.border}>
@@ -96,10 +135,8 @@ const Registro = ({ navigation }) => {
               mode="dropdown"
               dropdownIconColor="#D5D5D5"
               dropdownIconRippleColor="#D5D5D5"
-              selectedValue={selectedLanguage}
-              onValueChange={(itemValue, itemIndex) =>
-                setSelectedLanguage(itemValue)
-              }
+              selectedValue={country}
+              onValueChange={(itemValue, itemIndex) => setCountry(itemValue)}
             >
               <Picker.Item style={{  }} label="Pais" value="pais" />
               <Picker.Item label="Colombia" value="colombia" />
@@ -112,13 +149,13 @@ const Registro = ({ navigation }) => {
               mode="dropdown"
               dropdownIconColor="#D5D5D5"
               dropdownIconRippleColor="#D5D5D5"
-              selectedValue={selectedLanguage}
+              selectedValue={dept}
               onValueChange={(itemValue, itemIndex) =>
-                setSelectedLanguage(itemValue)
+                setDept(itemValue)
               }
             >
               <Picker.Item style={{ fontSize: 16 }} label="Estado" value="estado" />
-              <Picker.Item label="No se que va aqui xd" value="state" />
+              <Picker.Item label="No se que va aqui xd" value="No se que va aqui xd" />
             </Picker>
           </View>
 
@@ -128,9 +165,9 @@ const Registro = ({ navigation }) => {
               mode="dropdown"
               dropdownIconColor="#D5D5D5"
               dropdownIconRippleColor="#D5D5D5"
-              selectedValue={selectedLanguage}
+              selectedValue={city}
               onValueChange={(itemValue, itemIndex) =>
-                setSelectedLanguage(itemValue)
+                setCity(itemValue)
               }
             >
               <Picker.Item label="Ciudad" value="ciudad" />
@@ -156,9 +193,10 @@ const Registro = ({ navigation }) => {
           <Text style={stylesR.inputinside} onPress={() => navigation.navigate("Login")}>VOLVER</Text>
         </TouchableHighlight>
         <TouchableHighlight style={stylesR.inputext2}>
-          <Text style={stylesR.inputinside2}>REGISTRARME</Text>
+          <Text style={stylesR.inputinside2} onPress={ ()=>registrar() } >REGISTRARME</Text>
         </TouchableHighlight>
       </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

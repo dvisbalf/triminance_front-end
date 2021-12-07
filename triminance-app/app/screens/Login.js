@@ -14,7 +14,7 @@ import Facebook from "../../assets/img/Facebook.svg";
 import Instagram from "../../assets/img/Instagram.svg";
 import Twitter from "../../assets/img/Twitter.svg";
 import Youtube from "../../assets/img/Youtube.svg";
-
+import axios from "axios";
 
 
 export default class Login extends Component {
@@ -37,19 +37,9 @@ export default class Login extends Component {
         "User": this.state.email.email,
         "pwd": this.state.password.password
       }
-      console.log(JSON.stringify(data))
       const url= 'http://45.236.129.73:8888/UserLogin/'
-      console.log(this.state.password)
-      const response = await fetch(url,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-          // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: JSON.stringify(data),
-      });
-      const json = await response.json();
-      console.log(json,response.status)
+      const response = await axios.post(url, data)
+      console.log(response.status)
       if(response.status==200){
         this.props.navigation.navigate("Inicio")
       }

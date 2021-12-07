@@ -19,6 +19,7 @@
     "@react-native-picker/picker": "^2.2.1",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
+    "axios": "^0.24.0",
     "expo": "~43.0.2",
     "expo-font": "~10.0.3",
     "expo-linear-gradient": "~10.0.3",
