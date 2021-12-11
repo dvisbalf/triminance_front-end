@@ -5,7 +5,6 @@ import {
   Text,
   View,
   SafeAreaView,
-  Image,
   TextInput,
   TouchableHighlight,
   ScrollView
