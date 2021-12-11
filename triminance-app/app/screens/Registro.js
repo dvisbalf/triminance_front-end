@@ -14,6 +14,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
+import {register} from "../routes"
+
 
 function MyCheckbox() {
   const [checked, onChange] = useState(false);
@@ -56,7 +58,7 @@ const Registro = ({ navigation }) => {
         "UserStateid": true,
         "legtermstate": true
       }
-    const url="http://45.236.129.73:8888/user/"
+    const url=register()
     console.log(data)
     const response = await axios.post(url, data);
     console.log(response.status);

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "../"
 import {
   StyleSheet,
   Text,
@@ -7,6 +8,7 @@ import {
   Image,
   TextInput,
   TouchableHighlight,
+  ScrollView
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import LOGO from "../../assets/img/LOGO.svg";
@@ -15,33 +17,26 @@ import Instagram from "../../assets/img/Instagram.svg";
 import Twitter from "../../assets/img/Twitter.svg";
 import Youtube from "../../assets/img/Youtube.svg";
 import axios from "axios";
+import {login} from "../routes";
+import { useState } from "react";
 
 
-export default class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
-  setEmail(email){
-    this.setState({email})
-  }
-  setPassword(password){
-    this.setState({password})
-  }
-  async checkUser(){
+const Login =({ navigation }) => {
+  const [email,setEmail]= useState("")
+  const [password,setPassword]=useState("")
+  
+  async function checkUser(){
     try {
       const data={
-        "User": this.state.email.email,
-        "pwd": this.state.password.password
+        "User": email.email,
+        "pwd": password.password
       }
-      const url= 'http://45.236.129.73:8888/UserLogin/'
+      const url=login();
+      console.log(url,data)
       const response = await axios.post(url, data)
       console.log(response.status)
       if(response.status==200){
-        this.props.navigation.navigate("Inicio")
+        navigation.navigate("Inicio")
       }
       else{
         alert("Usuario o contraseña incorrectos")
@@ -51,9 +46,9 @@ export default class Login extends Component {
     }
   }
 
-  render(){
-    return(
+  return(
     <SafeAreaView style={{ flex: 1 }}>
+      <ScrollView>
       <View style={styles.container}>
         <LinearGradient colors={["#EA0451", "#FF682F"]} style={styles.gradient}>
           <LOGO style={styles.logo} />
@@ -77,7 +72,7 @@ export default class Login extends Component {
           /{" "}
           <Text
             style={{ color: "#0439EA" }}
-            onPress={() => this.props.navigation.navigate("Registro")}
+            onPress={() => navigation.navigate("Registro")}
           >
             Registrarme
           </Text>
@@ -91,7 +86,7 @@ export default class Login extends Component {
               type="text"
               placeholder="Login"
               required
-              onChangeText={(email) => this.setEmail({ email })}
+              onChangeText={(email) => setEmail({ email })}
             />
 
             <TextInput
@@ -101,12 +96,12 @@ export default class Login extends Component {
               placeholder="Password"
               secureTextEntry={true}
               required
-              onChangeText={(password) => this.setPassword({password })}
+              onChangeText={(password) => setPassword({password })}
             />
           </View>
           <TouchableHighlight 
             style={styles.inputext2}
-            onPress={() => this.checkUser()}
+            onPress={() => checkUser()}
           >
             <Text style={styles.inputinside}>ACCEDER</Text>
           </TouchableHighlight>
@@ -120,9 +115,12 @@ export default class Login extends Component {
           
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>);
-  }
 }
+
+export default Login;
+
 const styles = StyleSheet.create({
   logo: {
     marginTop: 31,
