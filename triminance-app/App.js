@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Login from "./app/screens/Login";
 import Registro from "./app/screens/Registro";
 import Inicio from "./app/screens/Inicio";
+import Ingresos from "./app/screens/Ingresos";
 
 
 export default App = () => {
@@ -61,6 +62,7 @@ export default App = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Registro" component={Registro} />
         <Stack.Screen name="Inicio" component={Inicio} />
+        <Stack.Screen name="Ingresos" component={Ingresos} />
       </Stack.Navigator>
     </NavigationContainer>
   );
