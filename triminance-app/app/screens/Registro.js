@@ -7,7 +7,7 @@ import {
   View,
   SafeAreaView,
   Pressable,
-  ScrollView
+  ScrollView,
 } from "react-native";
 import LOGO from "../../assets/img/LOGO.svg";
 import { LinearGradient } from "expo-linear-gradient";
@@ -44,22 +44,56 @@ const Registro = ({ navigation }) => {
   const [country, setCountry] = useState("");
   const [dept, setDept] = useState("");
   const [city, setCity] = useState("");
+  const [datacountry, setDatacountry] = useState([]);
+  const [datadept, setDatadept] = useState([]);
+  const [datacity, setDatacity] = useState([]);
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJfZW1haWwiOiJmZXJuYW5sYW1icmFubzA5QGdtYWlsLmNvbSIsImFwaV90b2tlbiI6IjlrVzA5ekMxS2l3ZUdyNHBEdkhTNVVDaVBkeURaMHdDbjZrNEZlVE5FQXVkNVFYWDBZYTZnYXgzVkRXbGo5OExQdlEifSwiZXhwIjoxNjM5NzAxOTUyfQ.7bdVDUGRk0i99sO-3i6V-6cAQT2zn1UuAEhP5HTZt2w";
+  async function getCountries() {
+    const response = await axios.get(
+      "https://www.universal-tutorial.com/api/countries",
+      {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    setDatacountry(response.data);
+  }
+  getCountries();
+
+  async function getDepts() {
+    console.log(dept);
+    const response = await axios.get(
+      'https://www.universal-tutorial.com/api/states/'+country,
+      {
+
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    console.log(response.data);
+    setDatadept(response.data);
+  }
+
 
   async function registrar() {
     const data = {
-        "id": 111111112,
-        "name": name,
-        "lastname": name,
-        "typeUser": "UserType",
-        "phone": phone,
-        "email": email,
-        "password": "s3ku3p4ssw0rd",
-        "userScore": 2.5,
-        "UserStateid": true,
-        "legtermstate": true
-      }
-    const url=register()
-    console.log(data)
+
+      id: 111111112,
+      name: name,
+      lastname: name,
+      typeUser: "UserType",
+      phone: phone,
+      email: email,
+      password: "password",
+      userScore: 2.5,
+      UserStateid: true,
+      legtermstate: true,
+    };
+    const url = "http://45.236.129.73:8888/user/";
+    console.log(data);
     const response = await axios.post(url, data);
     console.log(response.status);
     if (response.status === 201) {
@@ -68,136 +102,153 @@ const Registro = ({ navigation }) => {
     }
   }
 
-
   return (
     <SafeAreaView style={{ flex: 1 }}>
-    <ScrollView>
-      <View style={stylesR.container}>
-        <LinearGradient
-          colors={["#EA0451", "#FF682F"]}
-          style={stylesR.gradient}
-        >
-          <LOGO style={stylesR.logo} />
-          <Text style={stylesR.text2}>
-            El dinero de <Text style={{ fontFamily: 'RubikBold' }}>tus sueños,</Text>
-          </Text>
-          <Text style={stylesR.text3}>
-            al <Text style={{ fontFamily: 'RubikBold' }}>precio justo.</Text>
-          </Text>
-        </LinearGradient>
-
-        <Text style={stylesR.text}>Registro de Usuario</Text>
-
-        <View>
-          <TextInput
-            style={stylesR.border}
-            name="email"
-            type="email"
-            placeholder="Email"
-            placeholderTextColor="#D5D5D5"
-            required
-            value={email}
-            onChangeText={(text) => setEmail(text)}
-          />
-
-          <TextInput
-            style={stylesR.border}
-            name="Cemail"
-            type="email"
-            placeholder="Confirma email"
-            placeholderTextColor="#D5D5D5"
-            required
-          />
-
-          <TextInput
-            style={stylesR.border}
-            name="telefono"
-            type="number"
-            placeholder="Teléfono movil"
-            placeholderTextColor="#D5D5D5"
-            required
-            value={phone}
-            onChangeText={(text) => setPhone(text)}
-          />
-
-          <TextInput
-            style={stylesR.border}
-            name="user"
-            type="text"
-            placeholder="Nombre Usuario"
-            placeholderTextColor="#D5D5D5"
-            required
-            value={name}
-            onChangeText={(text) => setName(text)}
-          />
-
-          <View style={stylesR.border}>
-            <Picker
-              style={stylesR.pais}
-              mode="dropdown"
-              dropdownIconColor="#D5D5D5"
-              dropdownIconRippleColor="#D5D5D5"
-              selectedValue={country}
-              onValueChange={(itemValue, itemIndex) => setCountry(itemValue)}
-            >
-              <Picker.Item style={{  }} label="Pais" value="pais" />
-              <Picker.Item label="Colombia" value="colombia" />
-            </Picker>
-          </View>
-
-          <View style={stylesR.border}>
-            <Picker
-              style={stylesR.pais}
-              mode="dropdown"
-              dropdownIconColor="#D5D5D5"
-              dropdownIconRippleColor="#D5D5D5"
-              selectedValue={dept}
-              onValueChange={(itemValue, itemIndex) =>
-                setDept(itemValue)
-              }
-            >
-              <Picker.Item style={{ fontSize: 16 }} label="Estado" value="estado" />
-              <Picker.Item label="No se que va aqui xd" value="No se que va aqui xd" />
-            </Picker>
-          </View>
-
-          <View style={stylesR.border}>
-            <Picker
-              style={stylesR.pais}
-              mode="dropdown"
-              dropdownIconColor="#D5D5D5"
-              dropdownIconRippleColor="#D5D5D5"
-              selectedValue={city}
-              onValueChange={(itemValue, itemIndex) =>
-                setCity(itemValue)
-              }
-            >
-              <Picker.Item label="Ciudad" value="ciudad" />
-              <Picker.Item label="Barranquilla" value="barranquilla" />
-            </Picker>
-          </View>
-
-          <View style={stylesR.terminos1}>
-            <MyCheckbox />
-            <Text style={{ fontFamily: "RubikRegular" }}>
-              {" "}
-              Certifico que estoy de acuerdo con los
+      <ScrollView>
+        <View style={stylesR.container}>
+          <LinearGradient
+            colors={["#EA0451", "#FF682F"]}
+            style={stylesR.gradient}
+          >
+            <LOGO style={stylesR.logo} />
+            <Text style={stylesR.text2}>
+              El dinero de{" "}
+              <Text style={{ fontFamily: "RubikBold" }}>tus sueños,</Text>
             </Text>
-          </View>
-          <View style={stylesR.terminos2}>
-            <Text style={{ fontFamily: "RubikRegular", color: "#0439EA" }}>
-              términos y condiciones
+            <Text style={stylesR.text3}>
+              al <Text style={{ fontFamily: "RubikBold" }}>precio justo.</Text>
             </Text>
+          </LinearGradient>
+
+          <Text style={stylesR.text}>Registro de Usuario</Text>
+
+          <View>
+            <TextInput
+              style={stylesR.border}
+              name="email"
+              type="email"
+              placeholder="Email"
+              placeholderTextColor="#D5D5D5"
+              required
+              value={email}
+              onChangeText={(text) => setEmail(text)}
+            />
+
+            <TextInput
+              style={stylesR.border}
+              name="Cemail"
+              type="email"
+              placeholder="Confirma email"
+              placeholderTextColor="#D5D5D5"
+              required
+            />
+
+            <TextInput
+              style={stylesR.border}
+              name="telefono"
+              type="number"
+              placeholder="Teléfono movil"
+              placeholderTextColor="#D5D5D5"
+              required
+              value={phone}
+              onChangeText={(text) => setPhone(text)}
+            />
+
+            <TextInput
+              style={stylesR.border}
+              name="user"
+              type="text"
+              placeholder="Nombre Usuario"
+              placeholderTextColor="#D5D5D5"
+              required
+              value={name}
+              onChangeText={(text) => setName(text)}
+            />
+
+            <View style={stylesR.border}>
+              <Picker
+                style={stylesR.pais}
+                mode="dropdown"
+                dropdownIconColor="#D5D5D5"
+                dropdownIconRippleColor="#D5D5D5"
+                selectedValue={country}
+                onValueChange={(itemValue, itemIndex) => {setCountry(itemValue)
+                getDepts()
+                }  }
+              >
+                {
+                  datacountry.map((pais) => (
+                    <Picker.Item
+                      label={pais.country_name}
+                      value={pais.country_name}
+                    />
+                  ))
+                }
+              </Picker>
+            </View>
+
+            <View style={stylesR.border}>
+              <Picker
+                style={stylesR.pais}
+                mode="dropdown"
+                dropdownIconColor="#D5D5D5"
+                dropdownIconRippleColor="#D5D5D5"
+                selectedValue={dept}
+                onValueChange={(itemValue, itemIndex) => setDept(itemValue)}
+              >
+                {
+                  datadept.map((depto) => (
+                    <Picker.Item
+                      label={depto}
+                      value={depto}
+                    />
+                  ))
+                }
+              </Picker>
+            </View>
+
+            <View style={stylesR.border}>
+              <Picker
+                style={stylesR.pais}
+                mode="dropdown"
+                dropdownIconColor="#D5D5D5"
+                dropdownIconRippleColor="#D5D5D5"
+                selectedValue={city}
+                onValueChange={(itemValue, itemIndex) => setCity(itemValue)}
+              >
+                <Picker.Item label="Ciudad" value="ciudad" />
+                <Picker.Item label="Barranquilla" value="barranquilla" />
+              </Picker>
+            </View>
+
+            <View style={stylesR.terminos1}>
+              <MyCheckbox />
+              <Text style={{ fontFamily: "RubikRegular" }}>
+                {" "}
+                Certifico que estoy de acuerdo con los
+              </Text>
+            </View>
+            <View style={stylesR.terminos2}>
+              <Text style={{ fontFamily: "RubikRegular", color: "#0439EA" }}>
+                términos y condiciones
+              </Text>
+            </View>
           </View>
+
+          <TouchableHighlight style={stylesR.inputext}>
+            <Text
+              style={stylesR.inputinside}
+              onPress={() => navigation.navigate("Login")}
+            >
+              VOLVER
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight style={stylesR.inputext2}>
+            <Text style={stylesR.inputinside2} onPress={() => registrar()}>
+              REGISTRARME
+            </Text>
+          </TouchableHighlight>
         </View>
-
-        <TouchableHighlight style={stylesR.inputext}>
-          <Text style={stylesR.inputinside} onPress={() => navigation.navigate("Login")}>VOLVER</Text>
-        </TouchableHighlight>
-        <TouchableHighlight style={stylesR.inputext2}>
-          <Text style={stylesR.inputinside2} onPress={ ()=>registrar() } >REGISTRARME</Text>
-        </TouchableHighlight>
-      </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -326,7 +377,6 @@ const stylesR = StyleSheet.create({
     borderWidth: 1,
     paddingBottom: 8,
     paddingTop: 0,
-    
   },
 
   inputext: {

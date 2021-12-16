@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, SafeAreaView, Image, TouchableHighlight } from "react-native";
 
-const IngresosB = ({navigation}) =>{
+const IngresosB = ({ navigation }) =>{
     return(
         <SafeAreaView style={{flex:1}}>
             <View style={{flex:1}}>
@@ -16,10 +16,11 @@ const IngresosB = ({navigation}) =>{
                     <Text style={style.texto}>provee la mayor información posible.</Text>
                 </View>
 
-                <TouchableHighlight style={style.caja}
-                    onPress={() => navigation.navigate('Ingreso')}
+                <TouchableHighlight
+                    style={style.caja}
+                    
                 >
-                    <Text style={style.boton}>EMPEZAR</Text>
+                    <Text style={style.boton} onPress={() => navigation.navigate("ingresos")}>EMPEZAR</Text>
                 </TouchableHighlight>
             </View>
 
