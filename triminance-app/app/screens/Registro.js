@@ -14,6 +14,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Picker } from "@react-native-picker/picker";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import axios from "axios";
+import {register} from "../routes"
+
 
 function MyCheckbox() {
   const [checked, onChange] = useState(false);
@@ -78,6 +80,7 @@ const Registro = ({ navigation }) => {
 
   async function registrar() {
     const data = {
+
       id: 111111112,
       name: name,
       lastname: name,
