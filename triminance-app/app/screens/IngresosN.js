@@ -1,12 +1,14 @@
-import React from "react";
-import { View, TextInput, Text, StyleSheet, SafeAreaView,TouchableHighlight, ScrollView } from "react-native";
+import React, { useState } from "react";
+import { View, TextInput, Text, StyleSheet, SafeAreaView,TouchableHighlight, ScrollView,Image } from "react-native";
 import {Picker} from '@react-native-picker/picker';
-
+import { RadioButton } from "react-native-paper";
 const IngresosN  = () =>{
+    const[ checked, setChecked]=useState('')
     return(
         <SafeAreaView>
         <ScrollView>
             <View style={style.row} >
+                <Image source={require('../../assets/img/ingresos.png')} style={style.ingresol}/>
                 <Text style={ style.ingresos} >Ingresos</Text>
 
                 <TouchableHighlight style={style.contenedor}>
@@ -55,6 +57,29 @@ const IngresosN  = () =>{
                         <Picker.Item style={{  }} label="tipo" value="" />
                         <Picker.Item label="Colombia" value="" />
                     </Picker>
+                </View>
+
+                <View>
+                    <Text style={style.seccion}>Datos contrato</Text>
+
+                    <View style={style.radioB}>
+                        <View style={style.opciones}>
+                            <Text style={style.texto}>Empresa</Text>
+                            <RadioButton 
+                                value="empresa"
+                                status={checked=== 'empresa' ? 'checked' : 'unchecked'}
+                                onPress={() => setChecked('empresa')}
+                            />
+                        </View>
+                        <View style={style.opciones}>
+                            <Text style={style.texto}>Persona</Text>
+                            <RadioButton 
+                                value="persona"
+                                status={checked === 'persona' ? 'checked' : 'unchecked'}
+                                onPress={() => setChecked('persona')}
+                            />
+                        </View>
+                    </View>
                 </View>
                 
                 <View style={style.cajasE}>
@@ -110,17 +135,17 @@ const IngresosN  = () =>{
                 </View>
 
                 <Text style={style.seccion}>3.Anexar certificado</Text>
-    
+
                 <View style={style.central}>
 
                     <View  style={style.dentro1}>
-
-                        <Text style={style.letras} >Galeria</Text>
+                        <Image source={require('../../assets/img/nube.png')} style={style.nube}/>
+                        <Text style={style.letras2} >Galeria</Text>
 
                     </View>
 
                     <View style={style.dentro2}>
-
+                        <Image source={require('../../assets/img/camara.png')} style={style.camara}/>
                         <Text style={style.letras} >Foto</Text>
                     
                     </View>
@@ -144,9 +169,10 @@ export default IngresosN;
 const style =StyleSheet.create({
     ingresos:{
         fontWeight:'bold',
-        fontSize:23,
+        fontSize:27,
         color:'#19454B',
         marginTop:'1%',
+        marginLeft:-87
     },
     row:{
         justifyContent:"space-between",
@@ -171,7 +197,7 @@ const style =StyleSheet.create({
         paddingLeft:20,
         paddingRight:20,
         paddingTop:10,
-        paddingBottom:10,
+        paddingBottom:10, 
     },
     inicio:{
         fontWeight:'bold',
@@ -232,7 +258,7 @@ const style =StyleSheet.create({
         marginTop:20,
         marginBottom:20,
         borderRadius:30,
-        paddingHorizontal:'17%',
+        paddingHorizontal:'12%',
         borderStyle:'dashed',
         backgroundColor:'white'
     },
@@ -244,12 +270,20 @@ const style =StyleSheet.create({
         marginTop:20,
         marginBottom:20,
         borderRadius:30,
-        paddingHorizontal:'17%',
+        paddingHorizontal:'12%',
         borderStyle:'dashed',
         backgroundColor:'white',
+        alignItems:'center',
+        textAlign:'center'
     },
     letras:{
         color:'#FF682F',
+        fontSize:20
+    },
+    letras2:{
+        color:'#FF682F',
+        fontSize:20,
+        paddingLeft:'6%'
     },
     letras1:{
         color:'white',
@@ -261,6 +295,41 @@ const style =StyleSheet.create({
         paddingTop:15,
         paddingBottom:15,
         marginTop:'7%',
+    },
+    contenedor2:{
+        backgroundColor:'#FF682F',
+        borderRadius:70,
+        paddingTop:15,
+        paddingBottom:15,
+        marginTop:'7%',
         marginBottom:'7%',
+    },
+    camara:{
+        width:60,
+        height:50,
+        marginBottom:5
+    },
+    nube:{
+        width:70,
+        height:50,
+        marginLeft:-4,
+        marginBottom:5
+    },
+    ingresol:{
+        width:30,
+        height:30,
+        marginTop:2 
+    },
+    radioB:{
+        flexDirection:"row",
+        marginTop:10
+    },
+    opciones:{
+        flexDirection:"row",
+        paddingHorizontal:40,
+    },
+    texto:{
+        fontSize:17,
+        marginTop:8
     },
 })

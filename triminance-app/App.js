@@ -59,11 +59,11 @@ export default App = () => {
           headerShown: false
         }}
       >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Registro" component={Registro} />
-        <Stack.Screen name="Inicio" component={Inicio} />
-        <Stack.Screen name="ingresosB" component={IngresosB} />
-        <Stack.Screen name="ingresos" component={Ingresos} />
+        <Stack.Screen name="Login" component={ Login } />
+        <Stack.Screen name="Registro" component={ Registro } />
+        <Stack.Screen name="Inicio" component={ Inicio } />
+        <Stack.Screen name="ingresosB" component={ IngresosB } />
+        <Stack.Screen name="ingresos" component={ Ingresos } />
       </Stack.Navigator>
     </NavigationContainer>
   );

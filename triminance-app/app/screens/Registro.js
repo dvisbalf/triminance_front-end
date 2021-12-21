@@ -248,6 +248,7 @@ const Registro = ({ navigation }) => {
               REGISTRARME
             </Text>
           </TouchableHighlight>
+          
         </View>
       </ScrollView>
     </SafeAreaView>
